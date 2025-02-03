@@ -4,7 +4,7 @@
 
 Welcome to this **2-hour React workshop**, where we will build a simple **To-Do List App** while learning the core concepts of React. This step-by-step guide will help you understand how React works and give you hands-on experience in building a basic interactive web application.
 
-## Step 1: Introduction to React (10 min)
+## Step 1: Introduction to React
 
 ### What is React?
 
@@ -34,7 +34,7 @@ React is a JavaScript library developed by Facebook for building interactive use
 - Visit [React Docs](https://react.dev) for official documentation
 - Practice by reading JSX examples
 
-## Step 2: Setting Up a React Project (20 min)
+## Step 2: Setting Up a React Project
 
 ### Creating a React App with Vite
 
@@ -72,7 +72,7 @@ npm run dev
 
 ---
 
-## Step 3: Creating Our First Component (20 min)
+## Step 3: Creating Our First Component
 ### Understanding Components
 A React app is built using components. Each component is a function that returns JSX.
 
@@ -101,7 +101,7 @@ A React app is built using components. Each component is a function that returns
 
 ---
 
-## Step 4: Managing State with useState (20 min)
+## Step 4: Managing State with useState
 ### What is State?
 State is how React components store dynamic data that affects the UI.
 
@@ -129,7 +129,7 @@ React provides the `useState` hook to store and update values in components.
 
 ---
 
-## Step 5: Adding and Rendering Tasks (20 min)
+## Step 5: Adding and Rendering Tasks
 ### Handling User Input
 React uses event handlers to capture user input.
 
@@ -168,7 +168,7 @@ React uses event handlers to capture user input.
 
 ---
 
-## Step 6: Deleting Tasks (15 min)
+## Step 6: Deleting Tasks
 ### Task
 1. Add a delete button to each task:
    ```jsx
@@ -196,7 +196,7 @@ React uses event handlers to capture user input.
 
 ---
 
-## Step 7: Persisting Data with localStorage (15 min)
+## Step 7: Persisting Data with localStorage
 ### Task
 1. Save tasks when adding or deleting them.
 2. Load tasks on app start using `useEffect`.
@@ -207,7 +207,7 @@ React uses event handlers to capture user input.
 
 ---
 
-## Conclusion & Q&A (10 min)
+## Conclusion & Q&A
 Congratulations! You have built a **React To-Do List App** while learning fundamental React concepts. Review the following:
 - JSX and Components
 - State with `useState`
