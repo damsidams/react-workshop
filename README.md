@@ -45,7 +45,7 @@ Vite is a fast build tool that allows for an optimized development experience.
 1. Open a terminal and run:
 
 ```bash
-npm create vite@latest my-todo-app --template react
+npm create vite@latest my-todo-app -- --template react-ts
 ```
 
 2. Navigate into the project and install dependencies:
@@ -137,7 +137,7 @@ React uses event handlers to capture user input.
 1. Add an input field and a button:
    ```jsx
    function TodoList() {
-       const [tasks, setTasks] = useState([]);
+       const [tasks, setTasks] = useState<String[]>([]);
        const [task, setTask] = useState("");
        
        const addTask = () => {
@@ -176,7 +176,7 @@ React uses event handlers to capture user input.
        const [tasks, setTasks] = useState([]);
        const [task, setTask] = useState("");
        
-       const deleteTask = (index) => {
+       const deleteTask = (index: number) => {
            setTasks(tasks.filter((_, i) => i !== index));
        };
        
