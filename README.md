@@ -207,6 +207,164 @@ React uses event handlers to capture user input.
 
 ---
 
+## Bonus Step: Firebase Authentication
+### Setting Up Firebase
+
+#### Task
+1. Install Firebase:
+```bash
+npm install firebase
+```
+
+2. Create a Firebase project and add configuration:
+```jsx
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+};
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+```
+
+### Adding Authentication Components
+
+#### Task
+1. Create `src/components/Auth.tsx`:
+```jsx
+import { useState } from "react";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+
+function Auth() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const register = async () => {
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            setEmail("");
+            setPassword("");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const login = async () => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            setEmail("");
+            setPassword("");
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    return (
+        <div>
+            <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={register}>Register</button>
+            <button onClick={login}>Login</button>
+            <button onClick={() => signOut(auth)}>Logout</button>
+        </div>
+    );
+}
+
+export default Auth;
+```
+
+### Connecting Todo List with Firebase
+
+#### Task
+1. Update `TodoList.jsx` to use Firestore:
+```jsx
+import { useState, useEffect } from "react";
+import { auth, db } from "./firebase";
+import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+
+function TodoList() {
+    const [tasks, setTasks] = useState([]);
+    const [task, setTask] = useState("");
+
+    useEffect(() => {
+        if (auth.currentUser) {
+            loadTasks();
+        }
+    }, [auth.currentUser]);
+
+    const loadTasks = async () => {
+        const q = query(
+            collection(db, "tasks"),
+            where("userId", "==", auth.currentUser.uid)
+        );
+        const querySnapshot = await getDocs(q);
+        setTasks(querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        })));
+    };
+
+    const addTask = async () => {
+        if (task.trim() && auth.currentUser) {
+            await addDoc(collection(db, "tasks"), {
+                text: task,
+                userId: auth.currentUser.uid
+            });
+            setTask("");
+            loadTasks();
+        }
+    };
+
+    const deleteTask = async (taskId) => {
+        await deleteDoc(doc(db, "tasks", taskId));
+        loadTasks();
+    };
+
+    if (!auth.currentUser) {
+        return <div>Please login to manage tasks</div>;
+    }
+
+    return (
+        <div>
+            <input value={task} onChange={(e) => setTask(e.target.value)} />
+            <button onClick={addTask}>Add Task</button>
+            <ul>
+                {tasks.map((t) => (
+                    <li key={t.id}>
+                        {t.text}
+                        <button onClick={() => deleteTask(t.id)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+export default TodoList;
+```
+
+#### Tips
+- Enable Email/Password authentication in Firebase Console
+- Add security rules to Firestore for user data protection
+- Handle loading states and errors appropriately
+
+---
+
+
 ## Conclusion & Q&A
 Congratulations! You have built a **React To-Do List App** while learning fundamental React concepts. Review the following:
 - JSX and Components
