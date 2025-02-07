@@ -1,5 +1,7 @@
 # React Workshop - Build a To-Do List App
 
+Support and ⭐ Star me !!
+
 ## Introduction
 
 Welcome to this **2-hour React workshop**, where we will build a simple **To-Do List App** while learning the core concepts of React. This step-by-step guide will help you understand how React works and give you hands-on experience in building a basic interactive web application.
