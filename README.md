@@ -22,7 +22,7 @@ React is a JavaScript library developed by Facebook for building interactive use
 ### Key Concepts
 
 - **Components**: Reusable building blocks of UI
-- **JSX**: A syntax extension that allows writing HTML within JavaScript
+- **tsx**: A syntax extension that allows writing HTML within JavaScript
 - **Props**: Pass data between components
 - **State**: Manage dynamic data in components
 
@@ -34,7 +34,7 @@ React is a JavaScript library developed by Facebook for building interactive use
 ### Tips
 
 - Visit [React Docs](https://react.dev) for official documentation
-- Practice by reading JSX examples
+- Practice by reading tsx examples
 
 ## Step 2: Setting Up a React Project
 
@@ -70,25 +70,25 @@ npm run dev
 
 #### Tips
 - If you face issues, delete `node_modules` and run `npm install` again.
-- Open `App.jsx` and modify some text to see live updates.
+- Open `App.tsx` and modify some text to see live updates.
 
 ---
 
 ## Step 3: Creating Our First Component
 ### Understanding Components
-A React app is built using components. Each component is a function that returns JSX.
+A React app is built using components. Each component is a function that returns tsx.
 
 #### Task
-1. Inside `src/`, create a new file: `TodoList.jsx`.
+1. Inside `src/`, create a new file: `TodoList.tsx`.
 2. Define a simple component:
-   ```jsx
+   ```tsx
    function TodoList() {
        return <h1>My To-Do List</h1>;
    }
    export default TodoList;
    ```
-3. Import it into `App.jsx` and use it:
-   ```jsx
+3. Import it into `App.tsx` and use it:
+   ```tsx
    import TodoList from "./TodoList";
    function App() {
        return <TodoList />;
@@ -99,7 +99,7 @@ A React app is built using components. Each component is a function that returns
 #### Tips
 - Component names should start with an uppercase letter.
 - A component must return a single root element.
-- JSX looks like HTML but is actually JavaScript.
+- tsx looks like HTML but is actually JavaScript.
 
 ---
 
@@ -111,8 +111,8 @@ State is how React components store dynamic data that affects the UI.
 React provides the `useState` hook to store and update values in components.
 
 #### Task
-1. Open `TodoList.jsx` and add state:
-   ```jsx
+1. Open `TodoList.tsx` and add state:
+   ```tsx
    import { useState } from "react";
 
    function TodoList() {
@@ -137,7 +137,7 @@ React uses event handlers to capture user input.
 
 #### Task
 1. Add an input field and a button:
-   ```jsx
+   ```tsx
    function TodoList() {
        const [tasks, setTasks] = useState<String[]>([]);
        const [task, setTask] = useState("");
@@ -173,7 +173,7 @@ React uses event handlers to capture user input.
 ## Step 6: Deleting Tasks
 ### Task
 1. Add a delete button to each task:
-   ```jsx
+   ```tsx
    function TodoList() {
        const [tasks, setTasks] = useState([]);
        const [task, setTask] = useState("");
@@ -219,7 +219,7 @@ npm install firebase
 ```
 
 2. Create a Firebase project and add configuration:
-```jsx
+```tsx
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
@@ -236,7 +236,7 @@ export const db = getFirestore(app);
 
 #### Task
 1. Create `src/components/Auth.tsx`:
-```jsx
+```tsx
 import { useState } from "react";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
@@ -292,8 +292,8 @@ export default Auth;
 ### Connecting Todo List with Firebase
 
 #### Task
-1. Update `TodoList.jsx` to use Firestore:
-```jsx
+1. Update `TodoList.tsx` to use Firestore:
+```tsx
 import { useState, useEffect } from "react";
 import { auth, db } from "./firebase";
 import { collection, addDoc, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
@@ -369,7 +369,7 @@ export default TodoList;
 
 ## Conclusion & Q&A
 Congratulations! You have built a **React To-Do List App** while learning fundamental React concepts. Review the following:
-- JSX and Components
+- tsx and Components
 - State with `useState`
 - Rendering lists dynamically
 - Event handling
